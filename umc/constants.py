@@ -1,4 +1,7 @@
 from collections import defaultdict
+
+import cloudscraper
+
 from umc.spiders.utils.importing_modules import *
 from umc.spiders.utils.embed_domain_list import _not_detail_pages
 headers = {
@@ -50,6 +53,15 @@ def cloudfare_response_result(response):
     token, agent = cfscrape.get_tokens(url, r_agent)
     pass
 
+def get_cookies_from_cloudscraper(self,url):
+
+    ua = UserAgent()
+    r_agent = ua.random
+    scraper = cloudscraper.create_scraper()
+    token, agent = scraper.get_tokens(url)
+    self.token = token
+    self.agent = agent
+
 
 def not_detailp_check(url):
     for _not_detail_page in _not_detail_pages:
@@ -57,6 +69,15 @@ def not_detailp_check(url):
             return True
 
     return False
+
+def instantiate_arguments(self,domain, bypass_cloudflare, type):
+
+    self.type = type
+    self.domain = domain
+    self.bypass_cloudflare = bypass_cloudflare
+    self.start_time = 0
+    ua = UserAgent()
+    self.r_agent = ua.random
 
 
 websites = defaultdict(str)
@@ -170,6 +191,12 @@ hosts["vidcloud.co"] = {
     "poster": False,
     "wait": 1
 }
+hosts["vidcloud9.com"] = {
+    "splash": False,
+    "title": True,
+    "poster": True,
+    "wait": 1
+}
 
 hosts["vev.red"] = {
     "splash": True,
@@ -233,9 +260,9 @@ hosts["ww.mp4upload.com"] = {
     "poster": True,
     "wait": 1
 }
-hosts["vidcloud9.com"] = {
+hosts["vidsrc.me"] = {
     "splash": False,
-    "title": True,
-    "poster": False,
+    "title": False,
+    "poster": True,
     "wait": 1
 }

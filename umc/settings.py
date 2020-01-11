@@ -47,12 +47,12 @@ SPIDER_MIDDLEWARES = {
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     # 'scrapy_cloudflare_middleware.middlewares.CloudFlareMiddleware': 560,
-    #'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    #'flat.middlewares.TooManyRequestsRetryMiddleware': 543,
+    'umc.middlewares.TooManyRequestsRetryMiddleware': 543,
 }
 
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
@@ -69,7 +69,7 @@ ITEM_PIPELINES = {
     'umc.pipelines.UmcPipeline': 300,
     'umc.pipelines.MovieOrTv': 301,
     'umc.pipelines.PostProcess': 302,
-    # 'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 303
+    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 303
 }
 
 ELASTICSEARCH_SERVERS = ['http://167.86.85.184:9200']
@@ -78,6 +78,7 @@ ELASTICSEARCH_BUFFER_LENGTH = 500
 ELASTICSEARCH_TYPE = '_doc'
 ELASTICSEARCH_UNIQ_KEY = 'embed_link'  # Custom unique key
 
+LOGSTATS_INTERVAL = 15
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = True
@@ -99,6 +100,8 @@ AUTOTHROTTLE_ENABLED = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-
+# DEPTH_PRIORITY = 1
+# SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleFifoDiskQueue'
+# SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.FifoMemoryQueue'
 # SPLASH_URL = "http://173.249.18.157:8050/"
 SPLASH_URL = 'http://localhost:8050'

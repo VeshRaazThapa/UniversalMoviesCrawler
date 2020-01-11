@@ -69,7 +69,7 @@ def poster_url_extracter(test_poster_urls,response):
 
 def is_poster_valid(poster_url_extract):
 
-    invalid_symbols = ['<', '>', '{', ';', '.js', 'adblock', '"', '\'', 'dablock','falcon']
+    invalid_symbols = ['<', '>', '{', ';', '.js', 'adblock', '"', '\'', 'dablock','falcon', 'logo.png','favicon.png']
     for invalid_symbol in invalid_symbols:
         if invalid_symbol in poster_url_extract:
             return False

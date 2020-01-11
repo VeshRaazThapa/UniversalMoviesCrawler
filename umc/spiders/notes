@@ -1,0 +1,32 @@
+from scrapy_splash import SplashRequest
+
+fetch(SplashRequest(response.url,args={'wait': 6},endpoint='render.html',headers={'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'},dont_filter=True))
+
+fetch(FormRequest(url='https://www9.0123movies.com/ip.file/swf/plugins/ipplugins.php',formdata={"ipplugins": '1', "ip_film": ip_film, "ip_server": '%s' % ip_server,"ip_name": '1',"fix": '0'},}))
+fetch()
+docker run -p 8050:8050 scrapinghub/splash
+@@ commands
+ultimate docker command:
+docker run -d -p 8050:8050 --memory=4G --restart=always scrapinghub/splash:1.4 --maxrss 4000
+docker run -d -p 8050:8050 --memory=4.5G --restart=always scrapinghub/splash:3.1 --maxrss 4000
+
+
+*****learning scrapy book ****
+useful commands:
+1. overireds starturl
+    scrapy parse --spider=basic http://web:9312/properties/property_000001. html
+
+
+2. generate spider using crawl spider template:
+    scrapy genspider -t crawl easy url
+3. passing arguments
+    getattr(self, 'variable', 'default')
+    getattr(self, "file", "todo.csv")
+    scrapy crawl fromcsv -a file=another_todo.csv -o out.csv
+4. running offline
+    scrapy crawl universal -a domain='dramacool.movie' -s LOG_LEVEL=INFO -s CLOSESPIDER_ITEMCOUNT= 4 -s HTTPCACHE_ENABLED=1
+## for daily crawling::
+opt 1: limiting items returned
+ scrapy crawl universal -a domain='dramacool.movie'  -s CLOSESPIDER_ITEMCOUNT=90
+                                                     -s CLOSESPIDER_PAGECOUNT=3
+                                                     -s CLOSESPIDER_TIMEOUT=10

@@ -71,10 +71,13 @@ def get_domain_from_url(url):
     return urlparse(url).netloc
 
 
-def is_host_embed(url):
+def is_host_embed(self, url):
     for host_embed_pattern in host_embed_patterns:
         is_valid = len(re.findall(host_embed_pattern, url)) > 0
         if is_valid:
+            self.embed_pattern = host_embed_pattern
+            _id_pattern = re.sub(r'\[.*', '([a-zA-Z0-9]+)', r'%s' % self.embed_pattern)
+            self._id = re.findall(_id_pattern, url)
             return True
     return False
 

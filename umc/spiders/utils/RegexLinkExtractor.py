@@ -37,7 +37,7 @@ class HostRegexLinkExtractor(LinkExtractor):
     def extract_links(self, response):
         results = re.findall(self.pattern, response.text)
         links = list(filter(lambda x: "%s" not in x[0], results))
-        links = list(map(lambda x: x[0], links))
+        links = list(map(lambda x : x[0], links))
         valid_links = list(filter(validator, links))
         valid_links = list(map(self.process_value, valid_links))
         valid_links = list(map(Link, valid_links))

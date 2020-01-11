@@ -26,7 +26,6 @@ class UmcItem(scrapy.Item):
     s_i_title = Field()
     embed_link = Field()
     file_link = Field()
-    i_id = Field()  # hostname-id eg : openload-aDfjjkdsfe
     s_i_poster = Field()
     host_id = Field()
     created_date = Field()
@@ -43,3 +42,4 @@ class UmcItem(scrapy.Item):
     _id = Field()
     filecheck_na = Field()
     adult_content = Field()
+    _id = Field()

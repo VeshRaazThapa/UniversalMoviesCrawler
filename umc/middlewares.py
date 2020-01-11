@@ -104,9 +104,7 @@ class UmcDownloaderMiddleware(object):
 
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.utils.response import response_status_message
-
 import time
-
 class TooManyRequestsRetryMiddleware(RetryMiddleware):
 
     def __init__(self, crawler):
@@ -118,11 +116,12 @@ class TooManyRequestsRetryMiddleware(RetryMiddleware):
         return cls(crawler)
 
     def process_response(self, request, response, spider):
-        if request.meta.get('dont_retry', False):
-            return response
-        elif response.status == 429:
+        # if request.meta.get('dont_retry', False):
+        #     return response
+        if response.status == 429 or '429 Too Many Requests' in response.text:
             self.crawler.engine.pause()
-            time.sleep(60) # If the rate limit is renewed in a minute, put 60 seconds, and so on.
+            print('429 too many requests encountered, sleeeping...')
+            time.sleep(40)# If the rate limit is renewed in a minute, put 60 seconds, and so on.
             self.crawler.engine.unpause()
             reason = response_status_message(response.status)
             return self._retry(request, reason, spider) or response

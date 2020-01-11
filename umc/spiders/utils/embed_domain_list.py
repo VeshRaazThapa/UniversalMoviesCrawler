@@ -54,7 +54,6 @@ host_domain_list = \
         "hindilinks4uto.com",
         "newsexit.org",
         "vidup.me",
-        "archive.org",
         "www.dailymotion.com",
         "nxload.com",
         "video66.org",
@@ -62,7 +61,14 @@ host_domain_list = \
         "www.yourupload.com",
         "embed.daebakdrama.com",
         "videobin.co",
-        "vidcloud9.com"
+        "vidcloud9.com",
+        "www.speedwatch.io",
+        "p.walldrama.com",
+        "scenelife.org",
+        "www.vidbull.tv",
+        "pkspeed.net",
+        "mixdrop.to",
+        "netu.best"
     ]
 # hosts link regex
 host_embed_patterns = [
@@ -73,16 +79,16 @@ host_embed_patterns = [
     r"//www.vidlox.tv/embed-[a-zA-Z0-9-]+\.html",
     r"//vidsrc.me/embed/[a-zA-Z0-9]+\/?",
     r"//truhd.xyz/embed/[a-zA-Z0-9]+\/?",
-    r"//oyohd.com/player/embed_player.php\?vid=.*",
+    r"//oyohd.com/player/embed_player.php\?vid=[a-zA-Z0-9]+",
     r"//vidohd.com/v/[a-zA-Z0-9]+\-[a-zA-Z0-9]+\/?",
     r"//hxload.co/embed/[a-zA-Z0-9]+\/?",
     r"//gounlimited.to/embed-[a-zA-Z0-9]+\.html",
     r"//api.hdv.fun/embed/[a-zA-Z0-9]+",
     r"//uptostream.com/iframe/[a-zA-Z0-9]+",
-    r"//vidcloud.co/embed/.*",
+    r"//vidcloud.co/embed/[a-zA-Z0-9]+",
     r"//mediashore.org/v/[a-zA-Z0-9]+",
-    r"//vidcloud.to/public/dist/index.html\?id=.*",
-    r"//www.videojsplus.com/v/.*",
+    r"//vidcloud.to/public/dist/index.html\?id=[a-zA-Z0-9]+",
+    r"//www.videojsplus.com/v/[a-zA-Z0-9]+",
     r"//vidlocker.xyz/embed-[a-zA-Z0-9]+\.html",
     r"//ok.ru/videoembed/[0-9a-zA-Z]+",
     r"//ghfkk.com/player/[0-9a-zA-Z]+/?",
@@ -120,7 +126,6 @@ host_embed_patterns = [
     r"//oload.space/embed/[a-zA-Z0-9_]+",
     r"//vidup.me/embed-[a-zA-Z0-9]+\.html",
     r"//vidnode.net/load\.php\?id=[^\"^\']*",
-    r"//archive.org/embed/[a-zA-Z0-9_=?&.]+",
     r"//www.dailymotion.com/embed/video/[a-zA-Z0-9]+",
     r"//nxload.com/embed/[a-z0-9A-Z]+",
     r"//video66.org/new/[a-zA-Z0-9=&?_.-]+flv",
@@ -128,8 +133,17 @@ host_embed_patterns = [
     r"//playbb.me/new/[a-zA-Z0-9&=]",
     r"//www.yourupload.com/embed/[a-zA-Z0-9]+",
     r"//videobin.co/embed-[a-zA-Z0-9]+\.html",
-    r"//vidcloud9.com/load\.php\?id=[a-zA-Z0-9=]+"
-
+    r"//vidcloud9.com/load\.php\?id=[a-zA-Z0-9=&+-]+",
+    r"//vidcloud9.com/server\.php\?id=[a-zA-Z0-9=&+-]+",
+    r"//www.speedwatch.io/e/[a-zA-Z0-9]+\.html",
+    r"//p.walldrama.com/player/[a-zA-Z0-9]+",
+    r"//scenelife.org/player/embed_player\.php\?vid=[a-zA-Z0-9]+",
+    r"//www.vidbull.tv/embed/[a-zA-Z0-9]+",
+    r"//pkspeed.net/embed-[a-zA-Z0-9]+\.html",
+    r"//cloudvideo.tv/embed-[a-zA-Z0-9]+",
+    r"/cloudvideo.tv/emb\.html\?[a-z0-9A-Z=./_]+",
+    r"//mixdrop.to/e/[a-zA-Z0-9]+",
+    r"//netu.best/player/embed_player\.php\?vid=[a-zA-Z0-9=#]+",
 ]
 
 
@@ -164,9 +178,12 @@ _not_detail_pages = [
     r"http://gounlimited.to/[a-z0-9A-Z]+",
     r"https://embed.daebakdrama.com/watch/[a-zA-Z0-9]+",
     r"https://videobin.co/[a-zA-Z0-9]+",
-    r"//vidcloud9.com/streaming\.php\?id=[a-zA-Z0-9+=&-]+"
+    r"https://vidcloud9.com/streaming\.php\?id=[a-zA-Z0-9+=&%-]+",
+    r"https://www.uwatchfree.ms/[a-zA-Z0-9]+\.php\?vid=[a-zA-Z0-9]+",
 
 ]
+
+
 # TODO: vidup.io and vev.io are not returning embed link
 
 # notes::
@@ -177,3 +194,4 @@ _not_detail_pages = [
 #  r"https://cloudvideo.tv/emb.html\?.*", ==> ajax request
 
 
+# https://vidcloud9.com/streaming.php?id=NDA3MzU=&title=Power+-+Season+1+Episode+01%3A+Not+Exactly+How+We+Planned&typesub=SUB&sub=L3Bvd2VyLXNlYXNvbi0xLWVwaXNvZGUtMDEtbm90LWV4YWN0bHktaG93LXdlLXBsYW5uZWQvcG93ZXItc2Vhc29uLTEtZXBpc29kZS0wMS1ub3QtZXhhY3RseS1ob3ctd2UtcGxhbm5lZC52dHQ=&cover=L3Bvd2VyLXNlYXNvbi0xLWF3dy9jb3Zlci5wbmc=

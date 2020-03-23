@@ -56,7 +56,7 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-# DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
+
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 # EXTENSIONS = {
@@ -71,6 +71,7 @@ ITEM_PIPELINES = {
     'umc.pipelines.PostProcess': 302,
     'umc.pipelines.ExtractId': 303,
     'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 304
+
 }
 
 ELASTICSEARCH_SERVERS = ['http://167.86.85.184:9200']
@@ -101,8 +102,8 @@ AUTOTHROTTLE_ENABLED = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# DEPTH_PRIORITY = 1
-# SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
-# SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
-SPLASH_URL = "http://167.86.85.184:8050/"
-# SPLASH_URL = 'http://localhost:8050'
+DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
+SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
+# SPLASH_URL = "http://167.86.85.184:8050/"
+SPLASH_URL = 'http://localhost:8050'

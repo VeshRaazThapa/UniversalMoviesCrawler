@@ -67,13 +67,7 @@ host_domain_list = \
         "www.vidbull.tv",
         "pkspeed.net",
         "mixdrop.to",
-        "netu.best",
-        "uqload.com",
-        "www.fsimg.info",
-        "embed.mystream.to",
-        "upvid.host",
-        "embed.mystream.to",
-        "www.core1player.com"
+        "netu.best"
     ]
 # hosts link regex
 host_embed_patterns = [
@@ -149,13 +143,6 @@ host_embed_patterns = [
     r"/cloudvideo.tv/emb\.html\?[a-z0-9A-Z=./_]+",
     r"//mixdrop.to/e/[a-zA-Z0-9]+",
     r"//netu.best/player/embed_player\.php\?vid=[a-zA-Z0-9=#]+",
-    r"//uqload.com/embed-[a-z0-9A-Z]+\.html",
-    r"//www.core1player.com/v/[a-zA-Z0-9]+",
-    r"//embed.mystream.to/[a-zA-Z0-9]+",
-    r"//upvid.host/embed-[a-zA-Z0-9]+\.html",
-    r"//uptostream.com/iframe/[a-zA-Z0-9]+",
-    r"//www.fsimg.info/v/[a-zA-Z0-9-]+",
-    r"//upvid.co/embed-[a-zA-Z0-9]+\.html"
 ]
 
 

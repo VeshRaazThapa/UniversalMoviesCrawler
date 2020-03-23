@@ -1,0 +1,2 @@
+curl http://167.86.85.184:7001/schedule.json -d project=umc_all -d spider=universal -d domain=cmovies.tv
+curl http://167.86.85.184:7001/schedule.json -d project=broken_verifier_server -d spider=singlehost -d domain=fembed.com

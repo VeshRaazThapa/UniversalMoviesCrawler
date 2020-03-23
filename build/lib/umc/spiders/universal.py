@@ -24,6 +24,7 @@ class HomeScraperSpider(CrawlSpider):
         """cloud flare using sites are listed in locally hosted page to use cloudscraper in starturl"""
         home_url = 'https://%s' % domain
         cloudflare_using_sites = 'file:///Users/stuff/Desktop/embed_test.html'
+
         if type == 'all':
             if self.bypass_cloudflare:
                 self.start_time = time.time()
@@ -37,8 +38,7 @@ class HomeScraperSpider(CrawlSpider):
             self.rules = (
                 Rule(LinkExtractor(allow_domains=allowed_domains, deny_domains=host_domain_list,
                                    tags=('iframe', 'li', 'area', 'a'),
-                                   attrs=('href', 'player-data', 'data-video', 'src'),
-                                   ),
+                                   attrs=('href', 'player-data', 'data-video', 'src')),
                      # follow=True,
                      process_request='process_request'
                      ),
@@ -46,12 +46,9 @@ class HomeScraperSpider(CrawlSpider):
                 Rule(RegexLinkExtractor(domain=allowed_domains),
                      # follow=True,
                      process_request='process_request'),
-                Rule(LinkExtractor(
-                                   allow_domains=host_domain_list,
-                                   deny_domains=(),
+                Rule(LinkExtractor(allow_domains=host_domain_list, deny_domains=(),
                                    tags=('a', 'area', 'li', 'iframe'),
                                    attrs=('href', 'player-data', 'data-video', 'src', 'data-vs'),
-                                   # deny_extensions='login.php',
                                    # restrict_text=host_embed_patterns,
                                    # process_value=self.process_embed_link
                                    ),
@@ -70,35 +67,28 @@ class HomeScraperSpider(CrawlSpider):
         super().__init__()
 
     def process_request(self, request, response):
-        # maxdepth = 3
-            url = request.url
-            s_info = ''
-        # if 'depth' not in response.meta:
-        #     response.meta['depth'] = 1
-        # if response.meta['depth'] <= maxdepth:
-        #     depth = response.meta['depth'] + 1
-            """this is for website having same domain for website and host as well eg. afdah.info"""
-            if is_host_embed(url):
-                    self.process_request_host(request, response)
-            # provides embedlinks but are not detailpage we needed
-            if not_detailp_check(url):
-                    s_info = extractor(response)
-            # scraping all the cloudflare protected links
-            if self.bypass_cloudflare:
-                """getting new token in 15 min interval"""
-                if (time.time() - self.start_time) >= 900:
-                    logging.info("15 min passed.....getting new token")
-                    get_cookies_from_cloudscraper(self, url)
-                    self.start_time = time.time()
+        url = request.url
+        s_info = ''
+        """this is for website having same domain for website and host as well eg. afdah.info"""
+        if is_host_embed(url):
+                self.process_request_host(request, response)
+        # provides embedlinks but are not detailpage we needed
+        if not_detailp_check(url):
+                s_info = extractor(response)
+        # scraping all the cloudflare protected links
+        if self.bypass_cloudflare:
+            """getting new token in 15 min interval"""
+            if (time.time() - self.start_time) >= 900:
+                logging.info("15 min passed.....getting new token")
+                get_cookies_from_cloudscraper(self, url)
+                self.start_time = time.time()
 
-                return Request(url=url, cookies=self.token,
-                               headers={'User-Agent': self.agent},
-                               meta={'s_info': s_info, 'dont_retry': True})
-            return Request(url=url, headers={'User-Agent': self.r_agent},
-                           meta={'s_info': s_info,
-                                 'don_retry': True})
-        # else:
-        #     return None
+            return Request(url=url, cookies=self.token,
+                           headers={'User-Agent': self.agent},
+                           meta={'s_info': s_info, 'dont_retry': True})
+        return Request(url=url, headers={'User-Agent': self.r_agent},
+                       meta={'s_info': s_info,
+                             'don_retry': True})
 
     def process_request_host(self, request, response):
         """request==embedlink,response=site_link"""

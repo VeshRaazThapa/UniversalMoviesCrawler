@@ -33,8 +33,7 @@ def splashrequest(url,callback,wait, meta=''):
     # ua = UserAgent()
     # r_agent = ua.random
     headers = {'user_agent': 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Mobile Safari/537.36'}
-    return SplashRequest(
-                         url,
+    return SplashRequest(url,
                          args={'wait': wait,
                                'timeout': 90,
                                },
@@ -94,14 +93,6 @@ websites[""] = {
     "extract_title_from_url": False
 
 }
-websites["wvvvv.vfilms.me"] = {
-    "splash": False,
-    "detail_page_pattern": '',
-    "tags": 'French',
-    "extract_title_from_url": False
-
-}
-
 
 # properties of hosts:: given default is title and poster is extractable and splash is not needed
 class DefaultHost:
@@ -301,12 +292,4 @@ hosts["database.gdriveplayer.us"] = {
     "poster": True,
     "wait":2,
     "extract_host_id":False
-}
-hosts["www.core1player.com"] = {
-    "splash": True,
-    "title": False,
-    "poster": True,
-    "wait": 2,
-    "extract_host_id": True
-
 }
